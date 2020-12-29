@@ -1,59 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>시계</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
-</head>
-<body style = "background-color: black; font-family: 'Nanum Gothic', sans-serif;" onload = "init();">
-    <!--<br><br><br>
-
-    <script>
-        var year = date.getYear();
-        var month = date.getMonth() + 1;
-        var date = date.getDate();
-        var y = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
-        var day = y[date.getDay()];
-        var hour = date.getHours();
-        var minute = date.getMinutes();
-        var second = deta.getSeconds();
-
-        function init() {
-            var date = `${year}년 ${month}월 ${date}일 (${day})`;
-            document.getElementById("date").innerHTML = date;
-        }
-    </script>-->
-    <br><br><br>
-    <h2 id = "date" style = "color: lime; font-size: 450%; text-align: center">0년 0월 0일 0요일</h2>
-    <h1 id = "clock" style = "color: lime; font-size: 750%; text-align: center">00:00:00</h1>
-
-    <script>
-        function clock() {
-            var date = new Date();
-            var year = date.getYear() + 1900;
-            var month = date.getMonth() + 1;
-            var clockDate = date.getDate();
-            var day = date.getDay();
-            var week = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
-            var seconds = date.getSeconds();
-            var Cdate = document.getElementById("date");
-            var Ctime = document.getElementById("clock");
-            Cdate.innerText = `${year}년 ${month}월 ${clockDate}일 ${week[day]}`;
-            Ctime.innerText = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes }`  : minutes }:${seconds < 10 ? `0${seconds }` : seconds }`;
-        }
-        
-        function init() {
-            clock();
-            setInterval(clock, 1000);
-        }
-
-        init();
-    </script>
-
-
-    </body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>시계</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+	</head>
+    <body style = "font-family: 'Nanum Gothic', sans-serif; background: black; color: lime; text-align:center">
+        <br><br><br><br><br><br>
+        <span id = "date" style = "font-size: 450%;"></span><br>
+		<span id = "time" style = "font-size: 750%;"></span>
+		<script>
+            var date = document.getElementById("date");
+            var time = document.getElementById("time");
+            function updateDate() {
+                var d = new Date();
+                var week = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+                var r = "";
+                r += d.getYear() + 1900 + "년 ";
+                r += d.getMonth() + 1 + "월 ";
+                r += d.getDate() + "일 ";
+                r += "(" + week[d.getDay()] + ")"
+				date.textContent = r;
+				setTimeout(updateDate, 1000 - d.getTime() % 1000 + 20);
+			}
+			function updateTime() {
+				var d = new Date();
+                var s = "";
+                s += d.getHours() >= 12 ? "오후 " : "오전 ";
+				s += ((d.getHours() + 11) % 12 + 1) + ":";
+				s += (10 > d.getMinutes() ? "0" : "") + d.getMinutes() + ":";
+				s += (10 > d.getSeconds() ? "0" : "") + d.getSeconds();
+				time.textContent = s;
+				setTimeout(updateTime, 1000 - d.getTime() % 1000 + 20);
+			}
+            updateDate();
+			updateTime();
+		</script>
+	</body>
 </html>
