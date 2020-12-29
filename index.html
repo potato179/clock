@@ -9,7 +9,10 @@
     <body style = "font-family: 'Nanum Gothic', sans-serif; background: black; color: lime; text-align:center">
         <br><br><br><br><br><br>
         <span id = "date" style = "font-size: 450%;"></span><br>
-		<span id = "time" style = "font-size: 750%;"></span>
+        <span id = "time" style = "font-size: 750%;"></span><br><br><br>
+        <br><br><br>
+        <span id = "goodbyeFlash" style = "font-size: 250%;"></span>
+
 		<script>
             var date = document.getElementById("date");
             var time = document.getElementById("time");
@@ -35,7 +38,27 @@
 				setTimeout(updateTime, 1000 - d.getTime() % 1000 + 20);
 			}
             updateDate();
-			updateTime();
+            updateTime();
+            
+            function goodbyeFlash(dt, id){
+                var countDownDate = new Date("Jan 1, 2021 00:00:01").getTime();
+                var x = setInterval(function() {
+                    var now = new Date().getTime();
+                    var distance = countDownDate - now;
+                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        
+                    document.getElementById("goodbyeFlash").innerHTML = "Adobe Flash Player가 관짝으로 가기까지.." + "<br>" + days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
+                        
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("goodbyeFlash").innerHTML = "Adobe Flash Player가 관짝으로 가셨습니다!";
+                    }
+                }, 1000);
+            }
+            goodbyeFlash();
 		</script>
 	</body>
 </html>
