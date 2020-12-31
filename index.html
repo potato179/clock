@@ -41,7 +41,7 @@
             updateTime();
             
             function goodbyeFlash(dt, id){
-                var countDownDate = new Date("Jan 12, 2021 00:00:01").getTime();
+                var countDownDate = new Date("Jan 1, 2021 00:00:01").getTime();
                 var x = setInterval(function() {
                     var now = new Date().getTime();
                     var distance = countDownDate - now;
@@ -50,11 +50,11 @@
                     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
                         
-                    document.getElementById("goodbyeFlash").innerHTML = "Adobe Flash Player가 관짝으로 가기까지.." + "<br>" + days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
+                    document.getElementById("goodbyeFlash").innerHTML = "2021년까지..." + "<br>" + days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
                         
                     if (distance < 0) {
                         clearInterval(x);
-                        document.getElementById("goodbyeFlash").innerHTML = "Adobe Flash Player가 관짝으로 가셨습니다!";
+                        document.getElementById("goodbyeFlash").innerHTML = "2021년 새해 복 많이 받으세요!";
                     }
                 }, 1000);
             }
