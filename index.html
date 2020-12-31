@@ -11,7 +11,8 @@
         <span id = "date" style = "font-size: 450%;"></span><br>
         <span id = "time" style = "font-size: 750%;"></span><br><br><br>
         <br><br><br>
-        <span id = "goodbyeFlash" style = "font-size: 250%;"></span>
+        <span id = "goodbyeFlash" style = "font-size: 250%;"></span><br><br><br><br><br><br>
+        <span id = "secret" style = "font-size: 12%;"></span>
 
 		<script>
             var date = document.getElementById("date");
@@ -59,6 +60,20 @@
                 }, 1000);
             }
             goodbyeFlash();
+
+            function secret(){
+                var firstDay = new Date("July 22, 2020 22:54:00").getTime();
+                var x = setInterval(function(){
+                    var now = new Date().getTime();
+                    var distance = now - firstDay;
+                    var d = Math.floor(distance / (1000 * 60 * 60 * 24)) + 1;
+                    var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var s = Math.floor((distance % (1000 * 60)) / 1000);
+                    document.getElementById("secret").innerHTML = `♥+ ${d}일 ${h}시간 ${m}분 ${s}초`; 
+                });
+            }
+            secret();
 		</script>
 	</body>
 </html>
